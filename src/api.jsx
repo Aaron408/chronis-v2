@@ -7,7 +7,7 @@ const getToken = () => {
 
 export const AuthApi = axios.create({
   baseURL:
-    "http://localhost:5000",
+    "https://vercel-authservice-25xpahwzu-aarons-projects-ab43df53.vercel.app",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
@@ -16,8 +16,7 @@ export const AuthApi = axios.create({
 });
 
 export const UsersApi = axios.create({
-  baseURL:
-    "http://localhost:5001",
+  baseURL: "https://users-services.vercel.app",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
@@ -27,7 +26,7 @@ export const UsersApi = axios.create({
 
 export const ActivitiesApi = axios.create({
   baseURL:
-    "http://localhost:5002",
+    "https://activities-services-48l42a9y4-aarons-projects-ab43df53.vercel.app",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
@@ -36,8 +35,7 @@ export const ActivitiesApi = axios.create({
 });
 
 export const ReportsApi = axios.create({
-  baseURL:
-    "http://localhost:5003",
+  baseURL: "https://reports-services.vercel.app",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
@@ -46,8 +44,7 @@ export const ReportsApi = axios.create({
 });
 
 export const SuscriptionApi = axios.create({
-  baseURL:
-    "http://localhost:5004",
+  baseURL: "https://suscription-services.vercel.app",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
@@ -57,7 +54,7 @@ export const SuscriptionApi = axios.create({
 
 export const NotificationsApi = axios.create({
   baseURL:
-    "http://localhost:5005",
+    "https://notifications-services-ccxm5z4rn-aarons-projects-ab43df53.vercel.app",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
