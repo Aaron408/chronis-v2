@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import Navigation from "./Navigation";
 import { AuthProvider } from "./Components/AuthContext";
 import { ToastContainer } from "react-toastify";
@@ -7,12 +7,12 @@ import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <Navigation />
         <ToastContainer />
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
