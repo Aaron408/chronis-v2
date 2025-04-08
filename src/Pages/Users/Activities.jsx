@@ -84,16 +84,32 @@ export default function Activities() {
   const handleSaveEvent = async (eventData) => {
     setIsLoading(true);
     try {
-      setIsModalOpen(false);
+      // Verificar si se está editando un evento y los datos no han cambiado
       if (editingEvent) {
+        // Comparar los datos actuales con los nuevos datos
+        const hasChanges = Object.keys(eventData).some(key => {
+          // Ignorar la propiedad 'id' en la comparación
+          if (key !== 'id' && editingEvent[key] !== eventData[key]) {
+            return true;
+          }
+          return false;
+        });
+
+        if (!hasChanges) {
+          toast.warning("No se han realizado cambios en la actividad");
+          setIsModalOpen(false);
+          setIsLoading(false);
+          return;
+        }
+
         await ActivitiesApi.post(`/api/updateActivities`, eventData);
         toast.success("Actividad actualizada exitosamente!");
-        setIsLoading(false);
       } else {
         await ActivitiesApi.post("/api/addActivity", eventData);
         toast.success("Actividad agregada exitosamente!");
-        setIsLoading(false);
       }
+      setIsLoading(false);
+      setIsModalOpen(false);
       await userActivities();
       setEditingEvent(null);
     } catch (error) {
@@ -140,9 +156,9 @@ export default function Activities() {
                     <span className="text-sm text-gray-500">
                       {event.type === "Puntual"
                         ? `${event.start_time}/${event.end_time} - ${event.date
-                            .split("-")
-                            .reverse()
-                            .join("/")}`
+                          .split("-")
+                          .reverse()
+                          .join("/")}`
                         : "Recurrente"}
                     </span>
                   </div>
@@ -154,8 +170,8 @@ export default function Activities() {
                       {event.status === "0"
                         ? "En espera"
                         : event.status === "1"
-                        ? "En proceso"
-                        : "Completado"}
+                          ? "En proceso"
+                          : "Completado"}
                     </span>
                     <div className="mt-2">
                       {event.type === "Recurrente" && (

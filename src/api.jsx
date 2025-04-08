@@ -13,6 +13,7 @@ export const AuthApi = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
+  timeout: 30000, // 30 seconds timeout
 });
 
 export const UsersApi = axios.create({
@@ -22,6 +23,7 @@ export const UsersApi = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
+  timeout: 30000, // 30 seconds timeout
 });
 
 export const ActivitiesApi = axios.create({
@@ -32,6 +34,7 @@ export const ActivitiesApi = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
+  timeout: 30000, // 30 seconds timeout
 });
 
 export const ReportsApi = axios.create({
@@ -41,6 +44,7 @@ export const ReportsApi = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
+  timeout: 30000, // 30 seconds timeout
 });
 
 export const SuscriptionApi = axios.create({
@@ -50,6 +54,7 @@ export const SuscriptionApi = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
+  timeout: 30000, // 30 seconds timeout
 });
 
 export const NotificationsApi = axios.create({
@@ -60,7 +65,19 @@ export const NotificationsApi = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
+  timeout: 30000, // 30 seconds timeout
 });
+
+// Función auxiliar para realizar peticiones sin await
+export const makeRequest = (apiCall) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      apiCall
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    }, 0);
+  });
+};
 
 const setupInterceptors = (apiInstance) => {
   apiInstance.interceptors.request.use(
