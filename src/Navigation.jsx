@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 //User Pages
@@ -9,6 +9,8 @@ import Home from "./Pages/Users/Home";
 import Activities from "./Pages/Users/Activities";
 import Profile from "./Pages/Users/Profile";
 import History from "./Pages/Users/History";
+
+import LandingPage from "./Pages/LandinPage";
 
 //Admin Pages
 import Dashboard from "./Pages/Admin/Dashboard";
@@ -22,7 +24,7 @@ import VerificationCode from "./Pages/Verification";
 
 const Navigation = () => {
   const { user } = useContext(AuthContext);
-  
+
   // Redirección específica según el tipo de usuario
   const roleRedirects = {
     "0": "/dashboard",
@@ -32,7 +34,7 @@ const Navigation = () => {
   return (
     <Routes>
       <Route path="*" element={<h1>Tas perdido o k?</h1>} />
-      <Route path="/" element={user ? <Navigate to={roleRedirects[user.type] || "/"} /> : <Login />} />
+      <Route path="/" element={user ? <Navigate to={roleRedirects[user.type] || "/"} /> : <LandingPage />} />
       <Route path="/register" element={user ? <Navigate to={roleRedirects[user.type] || "/"} /> : <SingIn />} />
       <Route path="/login" element={user ? <Navigate to={roleRedirects[user.type] || "/"} /> : <Login />} />
       <Route path="/forgot-password" element={user ? <Navigate to={roleRedirects[user.type] || "/"} /> : <PasswordRecovery />} />

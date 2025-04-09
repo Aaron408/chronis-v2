@@ -28,7 +28,8 @@ export const UsersApi = axios.create({
 
 export const ActivitiesApi = axios.create({
   baseURL:
-    "https://activities-services-48l42a9y4-aarons-projects-ab43df53.vercel.app",
+    //"https://activities-services-48l42a9y4-aarons-projects-ab43df53.vercel.app",//
+    "http://localhost:5002",
   headers: {
     Authorization: `Bearer ${getToken()}`,
     "Access-Control-Allow-Origin": "*",
